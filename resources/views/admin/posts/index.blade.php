@@ -7,6 +7,14 @@
         <a href="{{ route('admin.posts.create') }}" class="btn btn-success">Crea un nuovo post</a>
     </div>
 
+    @if(session('alert'))
+
+    <div class="alert alert-success">
+        {{ session('alert') }}
+    </div>
+
+    @endif
+
     <table class="table">
         <thead>
             <tr>
@@ -20,10 +28,14 @@
             <tr>
                 <td>{{ $post->title }}</td>
                 <td>{{ $post->getFormattedDate($post->created_at, 'd-m-Y') }}</td>
-                <td>
+                <td colspan="2">
                     <a href="{{ route('admin.posts.show', $post->id) }}" class="btn btn-primary">Dettagli</a>
                     <a href="{{ route('admin.posts.edit', $post->id) }}" class="btn btn-warning">Modifica</a>
-
+                    <form action="{{ route('admin.posts.destroy', $post->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger">Cancella</button>
+                    </form>
                 </td>
             </tr>
             @empty
