@@ -23,6 +23,9 @@
             @endforelse
         </tbody>
     </table>
+    <div class="d-flex justify-content-end">
+        {{ $posts->links() }}
+    </div>
 </div>
 
 @endsection
