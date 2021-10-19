@@ -20,7 +20,11 @@
             <tr>
                 <td>{{ $post->title }}</td>
                 <td>{{ $post->getFormattedDate($post->created_at, 'd-m-Y') }}</td>
-                <td><a href="{{ route('admin.posts.show', $post->id) }}" class="btn btn-primary">Dettagli</a></td>
+                <td>
+                    <a href="{{ route('admin.posts.show', $post->id) }}" class="btn btn-primary">Dettagli</a>
+                    <a href="{{ route('admin.posts.edit', $post->id) }}" class="btn btn-warning">Modifica</a>
+
+                </td>
             </tr>
             @empty
                 <tr><td colspan="3" class="text-center">Non ci sono post da visualizzare</td></tr>
