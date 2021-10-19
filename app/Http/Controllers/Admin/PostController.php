@@ -6,6 +6,7 @@ use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Post;
+use Illuminate\Validation\Rule;
 
 
 class PostController extends Controller
@@ -39,6 +40,20 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+
+        // VALIDATION 
+
+        $request->validate([
+            'title' => 'required|string|unique:posts|min:2',
+            'content' => 'required|string|min:10',
+            'image' => 'required|string'
+        ], [
+            'required' => 'Il campo :attribute è obbligatorio',
+            'string' => 'Il campo :attribute deve essere una stringa',
+            'min' => 'Il minimo dei caratteri deve essere :min',
+            'title.unique' => 'Questo titolo esiste già'
+        ]);
+
         $data = $request->all();
         $post = new Post();
         $post->slug = Str::slug($data['title'], '-');
@@ -78,6 +93,20 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
+
+        // VALIDATION 
+
+        $request->validate([
+            'title' => ['required', 'string', Rule::unique('posts')->ignore($post->id), 'min:2'],
+            'content' => 'required|string|min:10',
+            'image' => 'required|string'
+        ], [
+            'required' => 'Il campo :attribute è obbligatorio',
+            'string' => 'Il campo :attribute deve essere una stringa',
+            'min' => 'Il minimo dei caratteri deve essere :min',
+            'title.unique' => 'Questo titolo esiste già'
+        ]);
+
         $data = $request->all();
         $post->update($data);
 

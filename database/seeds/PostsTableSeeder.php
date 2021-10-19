@@ -19,7 +19,7 @@ class PostsTableSeeder extends Seeder
         for ($i = 0; $i < 50; $i++) {
             $post = new Post();
             $post->title = $faker->words(3, true);
-            $post->content = $faker->text(200);
+            $post->content = $faker->text(2000);
             $post->image = $faker->imageUrl(250, 250);
             $post->slug = Str::slug($post->title, '-');
             $post->save();

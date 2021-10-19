@@ -79,6 +79,7 @@
                             <a href="{{ route('register') }}">Register</a>
                         @endif
                     @endauth
+                    <a href="{{ route('admin.home') }}">Admin Dashboard</a>
                 </div>
             @endif
 
