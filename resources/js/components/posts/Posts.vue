@@ -2,16 +2,11 @@
   <section class="my-5">
     <!--  LOADER -->
 
-    <div
-      v-if="isLoading"
-      class="loader d-flex justify-content-center align-items-center"
-    >
-      <div class="spinner-border text-warning" role="status">
-        <span class="sr-only">Loading...</span>
-      </div>
-    </div>
+    <Loader v-if="isLoading" :isLoading="isLoading" />
 
     <!-- --------------------------- -->
+
+    <!-- POSTS LIST -->
 
     <div v-else>
       <h2>La lista dei posts</h2>
@@ -52,13 +47,14 @@
 </template>
 
 <script>
-import axios from "axios";
 import CardPost from "./CardPost.vue";
+import Loader from "../Loader.vue";
 
 export default {
   name: "Posts",
   components: {
     CardPost,
+    Loader,
   },
   data() {
     return {
@@ -92,18 +88,5 @@ export default {
 <style scoped lang="scss">
 .page-item .page-link {
   cursor: pointer;
-}
-
-.loader {
-  background-color: rgba($color: #000000, $alpha: 0.4);
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  .spinner-border {
-    width: 250px;
-    height: 250px;
-  }
 }
 </style>
