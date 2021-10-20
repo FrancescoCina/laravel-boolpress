@@ -6,7 +6,7 @@
           <a
             v-if="pagePosts > 1"
             class="page-link"
-            @click="getAllPostsFromApi(pagePosts - 1)"
+            @click="$emit('changePageEvent', pagePosts - 1)"
             >Previous</a
           >
         </li>
@@ -16,12 +16,14 @@
           class="page-item"
           :class="pagePosts === i ? 'active' : ''"
         >
-          <a @click="getAllPostsFromApi((pagePosts = i))" class="page-link">{{
-            i
-          }}</a>
+          <a
+            @click="$emit('changePageEvent', (pagePosts = i))"
+            class="page-link"
+            >{{ i }}</a
+          >
         </li>
         <li v-if="pagePosts !== lastPagePosts" class="page-item">
-          <a class="page-link" @click="getAllPostsFromApi(pagePosts + 1)"
+          <a class="page-link" @click="$emit('changePageEvent', pagePosts + 1)"
             >Next</a
           >
         </li>
@@ -37,5 +39,8 @@ export default {
 };
 </script>
 
-<style>
+<style scoped lang="scss">
+.page-item .page-link {
+  cursor: pointer;
+}
 </style>

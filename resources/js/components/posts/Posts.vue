@@ -8,11 +8,31 @@
 
     <!-- POSTS LIST -->
 
-    <div v-else>
-      <h2>La lista dei posts</h2>
+    <div v-else class="mb-5">
+      <h2>La lista dei post</h2>
+      <div class="order-controls">
+        <p
+          class="clickable font-weight-bold"
+          @click="changeOrderToAsc"
+          v-if="order === 'desc'"
+        >
+          Giù
+        </p>
+        <p
+          class="clickable font-weight-bold"
+          @click="changeOrderToDesc"
+          v-if="order === 'asc'"
+        >
+          Su
+        </p>
+      </div>
       <CardPost v-for="post in posts" :key="post.id" :post="post" />
 
-      <PageNavigator :pagePosts="pagePosts" :lastPagePosts="lastPagePosts" />
+      <PageNavigator
+        @changePageEvent="changePage"
+        :pagePosts="pagePosts"
+        :lastPagePosts="lastPagePosts"
+      />
     </div>
   </section>
 </template>
@@ -36,19 +56,33 @@ export default {
       pagePosts: 1,
       lastPagePosts: "",
       isLoading: false,
+      order: "desc",
     };
   },
   methods: {
     getAllPostsFromApi(page) {
       this.isLoading = true;
-      axios.get(`${this.baseUri}/api/posts?page=${page}`).then((res) => {
-        //   const { data, current_page, last_page } = res.data.posts;
-        this.posts = res.data.posts.data;
-        this.pagePosts = res.data.posts.current_page;
-        this.lastPagePosts = res.data.posts.last_page;
-        console.log(this.posts);
-        this.isLoading = false;
-      });
+      axios
+        .get(`${this.baseUri}/api/posts?page=${page}&order=${this.order}`)
+        .then((res) => {
+          //   const { data, current_page, last_page } = res.data.posts;
+          this.posts = res.data.posts.data;
+          this.pagePosts = res.data.posts.current_page;
+          this.lastPagePosts = res.data.posts.last_page;
+          console.log(this.posts);
+          this.isLoading = false;
+        });
+    },
+    changePage(page) {
+      this.getAllPostsFromApi(page);
+    },
+    changeOrderToAsc() {
+      this.order = "asc";
+      this.getAllPostsFromApi(this.pagePosts);
+    },
+    changeOrderToDesc() {
+      this.order = "desc";
+      this.getAllPostsFromApi(this.pagePosts);
     },
   },
   created() {
@@ -59,7 +93,7 @@ export default {
 
 
 <style scoped lang="scss">
-.page-item .page-link {
+.clickable {
   cursor: pointer;
 }
 </style>

@@ -13,9 +13,10 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $posts = Post::paginate(10);
+        $order = $request->query('order') ?? 'desc';
+        $posts = Post::orderBy('id', $order)->paginate(10);
         return response()->json(compact('posts'));
     }
 

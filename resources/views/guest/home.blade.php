@@ -9,6 +9,10 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
+        {{-- Bootstrap Icons --}}
+
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.6.1/bootstrap-icons.svg">
+
         {{-- Css --}}
 
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">

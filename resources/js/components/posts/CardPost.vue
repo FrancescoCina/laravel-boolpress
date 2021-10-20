@@ -7,6 +7,7 @@
       width="100"
     />
     <div class="card-body">
+      <small>{{ post.id }}</small>
       <h5 class="card-title">{{ post.title }}</h5>
       <p class="card-text">
         {{ post.content }}
