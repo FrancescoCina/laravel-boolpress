@@ -2087,6 +2087,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -38784,6 +38790,14 @@ var render = function() {
                     )
                   : _vm._e()
               ]),
+              _vm._v(" "),
+              _c("PageNavigator", {
+                attrs: {
+                  pagePosts: _vm.pagePosts,
+                  lastPagePosts: _vm.lastPagePosts
+                },
+                on: { changePageEvent: _vm.changePage }
+              }),
               _vm._v(" "),
               _vm._l(_vm.posts, function(post) {
                 return _c("CardPost", { key: post.id, attrs: { post: post } })

@@ -26,6 +26,12 @@
           Su
         </p>
       </div>
+
+      <PageNavigator
+        @changePageEvent="changePage"
+        :pagePosts="pagePosts"
+        :lastPagePosts="lastPagePosts"
+      />
       <CardPost v-for="post in posts" :key="post.id" :post="post" />
 
       <PageNavigator
