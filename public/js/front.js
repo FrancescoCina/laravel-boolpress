@@ -2023,6 +2023,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -38432,99 +38435,106 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "section",
-    { staticClass: "my-5" },
-    [
-      _vm.isLoading
-        ? _c(
-            "div",
-            {
-              staticClass:
-                "loader d-flex justify-content-center align-items-center"
-            },
-            [_vm._m(0)]
-          )
-        : _vm._e(),
-      _vm._v(" "),
-      _c("h2", [_vm._v("La lista dei posts")]),
-      _vm._v(" "),
-      _vm._l(_vm.posts, function(post) {
-        return _c("CardPost", { key: post.id, attrs: { post: post } })
-      }),
-      _vm._v(" "),
-      _c("div", { staticClass: "page-navigator mt-5" }, [
-        _c("nav", { attrs: { "aria-label": "Page navigation example" } }, [
-          _c(
-            "ul",
-            { staticClass: "pagination" },
-            [
-              _c("li", { staticClass: "page-item" }, [
-                _vm.pagePosts > 1
-                  ? _c(
-                      "a",
-                      {
-                        staticClass: "page-link",
-                        on: {
-                          click: function($event) {
-                            return _vm.getAllPostsFromApi(_vm.pagePosts - 1)
-                          }
-                        }
-                      },
-                      [_vm._v("Previous")]
-                    )
-                  : _vm._e()
-              ]),
-              _vm._v(" "),
-              _vm._l(5, function(i) {
-                return _c(
-                  "li",
-                  {
-                    key: i,
-                    staticClass: "page-item",
-                    class: _vm.pagePosts === i ? "active" : ""
-                  },
-                  [
-                    _c(
-                      "a",
-                      {
-                        staticClass: "page-link",
-                        on: {
-                          click: function($event) {
-                            _vm.getAllPostsFromApi((_vm.pagePosts = i))
-                          }
-                        }
-                      },
-                      [_vm._v(_vm._s(i))]
-                    )
-                  ]
-                )
-              }),
-              _vm._v(" "),
-              _vm.pagePosts !== _vm.lastPagePosts
-                ? _c("li", { staticClass: "page-item" }, [
-                    _c(
-                      "a",
-                      {
-                        staticClass: "page-link",
-                        on: {
-                          click: function($event) {
-                            return _vm.getAllPostsFromApi(_vm.pagePosts + 1)
-                          }
-                        }
-                      },
-                      [_vm._v("Next")]
-                    )
-                  ])
-                : _vm._e()
-            ],
-            2
-          )
-        ])
-      ])
-    ],
-    2
-  )
+  return _c("section", { staticClass: "my-5" }, [
+    _vm.isLoading
+      ? _c(
+          "div",
+          {
+            staticClass:
+              "loader d-flex justify-content-center align-items-center"
+          },
+          [_vm._m(0)]
+        )
+      : _c(
+          "div",
+          [
+            _c("h2", [_vm._v("La lista dei posts")]),
+            _vm._v(" "),
+            _vm._l(_vm.posts, function(post) {
+              return _c("CardPost", { key: post.id, attrs: { post: post } })
+            }),
+            _vm._v(" "),
+            _c("div", { staticClass: "page-navigator mt-5" }, [
+              _c(
+                "nav",
+                { attrs: { "aria-label": "Page navigation example" } },
+                [
+                  _c(
+                    "ul",
+                    { staticClass: "pagination" },
+                    [
+                      _c("li", { staticClass: "page-item" }, [
+                        _vm.pagePosts > 1
+                          ? _c(
+                              "a",
+                              {
+                                staticClass: "page-link",
+                                on: {
+                                  click: function($event) {
+                                    return _vm.getAllPostsFromApi(
+                                      _vm.pagePosts - 1
+                                    )
+                                  }
+                                }
+                              },
+                              [_vm._v("Previous")]
+                            )
+                          : _vm._e()
+                      ]),
+                      _vm._v(" "),
+                      _vm._l(5, function(i) {
+                        return _c(
+                          "li",
+                          {
+                            key: i,
+                            staticClass: "page-item",
+                            class: _vm.pagePosts === i ? "active" : ""
+                          },
+                          [
+                            _c(
+                              "a",
+                              {
+                                staticClass: "page-link",
+                                on: {
+                                  click: function($event) {
+                                    _vm.getAllPostsFromApi((_vm.pagePosts = i))
+                                  }
+                                }
+                              },
+                              [_vm._v(_vm._s(i))]
+                            )
+                          ]
+                        )
+                      }),
+                      _vm._v(" "),
+                      _vm.pagePosts !== _vm.lastPagePosts
+                        ? _c("li", { staticClass: "page-item" }, [
+                            _c(
+                              "a",
+                              {
+                                staticClass: "page-link",
+                                on: {
+                                  click: function($event) {
+                                    return _vm.getAllPostsFromApi(
+                                      _vm.pagePosts + 1
+                                    )
+                                  }
+                                }
+                              },
+                              [_vm._v("Next")]
+                            )
+                          ])
+                        : _vm._e()
+                    ],
+                    2
+                  )
+                ]
+              )
+            ])
+          ],
+          2
+        )
+  ])
 }
 var staticRenderFns = [
   function() {
