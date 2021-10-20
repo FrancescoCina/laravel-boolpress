@@ -2,6 +2,34 @@
   <section class="my-5">
     <h2>La lista dei posts</h2>
     <CardPost v-for="post in posts" :key="post.id" :post="post" />
+
+    <div class="page-navigator mt-5">
+      <nav aria-label="Page navigation example">
+        <ul class="pagination">
+          <li class="page-item">
+            <a
+              v-if="pagePosts > 1"
+              class="page-link"
+              @click="getAllPostsFromApi(pagePosts - 1)"
+              >Previous</a
+            >
+          </li>
+          <li class="page-item">
+            <a class="page-link">1</a>
+          </li>
+          <li class="page-item"><a class="page-link">2</a></li>
+          <li class="page-item"><a class="page-link">3</a></li>
+          <li class="page-item"><a class="page-link">4</a></li>
+          <li class="page-item"><a class="page-link">5</a></li>
+
+          <li v-if="pagePosts !== lastPagePosts" class="page-item">
+            <a class="page-link" @click="getAllPostsFromApi(pagePosts + 1)"
+              >Next</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </div>
   </section>
 </template>
 
@@ -18,21 +46,30 @@ export default {
     return {
       baseUri: "http://127.0.0.1:8000",
       posts: [],
+      pagePosts: 1,
+      lastPagePosts: "",
     };
   },
   methods: {
-    getAllPostsFromApi() {
-      axios.get(`${this.baseUri}/api/posts`).then((res) => {
-        this.posts = res.data.posts;
+    getAllPostsFromApi(page) {
+      axios.get(`${this.baseUri}/api/posts?page=${page}`).then((res) => {
+        //   const { data, current_page, last_page } = res.data.posts;
+        this.posts = res.data.posts.data;
+        this.pagePosts = res.data.posts.current_page;
+        this.lastPagePosts = res.data.posts.last_page;
         console.log(this.posts);
       });
     },
   },
   created() {
-    this.getAllPostsFromApi();
+    this.getAllPostsFromApi(this.pagePosts);
   },
 };
 </script>
 
-<style>
+
+<style scoped lang="scss">
+.page-item .page-link {
+  cursor: pointer;
+}
 </style>
