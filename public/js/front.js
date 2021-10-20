@@ -2006,8 +2006,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -38426,99 +38424,70 @@ var render = function() {
       _vm._v(" "),
       _c("div", { staticClass: "page-navigator mt-5" }, [
         _c("nav", { attrs: { "aria-label": "Page navigation example" } }, [
-          _c("ul", { staticClass: "pagination" }, [
-            _c("li", { staticClass: "page-item" }, [
-              _vm.pagePosts > 1
-                ? _c(
-                    "a",
-                    {
-                      staticClass: "page-link",
-                      on: {
-                        click: function($event) {
-                          return _vm.getAllPostsFromApi(_vm.pagePosts - 1)
+          _c(
+            "ul",
+            { staticClass: "pagination" },
+            [
+              _c("li", { staticClass: "page-item" }, [
+                _vm.pagePosts > 1
+                  ? _c(
+                      "a",
+                      {
+                        staticClass: "page-link",
+                        on: {
+                          click: function($event) {
+                            return _vm.getAllPostsFromApi(_vm.pagePosts - 1)
+                          }
                         }
-                      }
-                    },
-                    [_vm._v("Previous")]
-                  )
-                : _vm._e()
-            ]),
-            _vm._v(" "),
-            _vm._m(0),
-            _vm._v(" "),
-            _vm._m(1),
-            _vm._v(" "),
-            _vm._m(2),
-            _vm._v(" "),
-            _vm._m(3),
-            _vm._v(" "),
-            _vm._m(4),
-            _vm._v(" "),
-            _vm.pagePosts !== _vm.lastPagePosts
-              ? _c("li", { staticClass: "page-item" }, [
+                      },
+                      [_vm._v("Previous")]
+                    )
+                  : _vm._e()
+              ]),
+              _vm._v(" "),
+              _vm._l(5, function(i) {
+                return _c("li", { key: i, staticClass: "page-item" }, [
                   _c(
                     "a",
                     {
                       staticClass: "page-link",
                       on: {
                         click: function($event) {
-                          return _vm.getAllPostsFromApi(_vm.pagePosts + 1)
+                          _vm.getAllPostsFromApi((_vm.pagePosts = i))
                         }
                       }
                     },
-                    [_vm._v("Next")]
+                    [_vm._v(_vm._s(i))]
                   )
                 ])
-              : _vm._e()
-          ])
+              }),
+              _vm._v(" "),
+              _vm.pagePosts !== _vm.lastPagePosts
+                ? _c("li", { staticClass: "page-item" }, [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "page-link",
+                        on: {
+                          click: function($event) {
+                            return _vm.getAllPostsFromApi(_vm.pagePosts + 1)
+                          }
+                        }
+                      },
+                      [_vm._v("Next")]
+                    )
+                  ])
+                : _vm._e()
+            ],
+            2
+          )
         ])
       ])
     ],
     2
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "page-item" }, [
-      _c("a", { staticClass: "page-link" }, [_vm._v("1")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "page-item" }, [
-      _c("a", { staticClass: "page-link" }, [_vm._v("2")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "page-item" }, [
-      _c("a", { staticClass: "page-link" }, [_vm._v("3")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "page-item" }, [
-      _c("a", { staticClass: "page-link" }, [_vm._v("4")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "page-item" }, [
-      _c("a", { staticClass: "page-link" }, [_vm._v("5")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

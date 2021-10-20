@@ -14,13 +14,11 @@
               >Previous</a
             >
           </li>
-          <li class="page-item">
-            <a class="page-link">1</a>
+          <li v-for="i in 5" :key="i" class="page-item">
+            <a @click="getAllPostsFromApi((pagePosts = i))" class="page-link">{{
+              i
+            }}</a>
           </li>
-          <li class="page-item"><a class="page-link">2</a></li>
-          <li class="page-item"><a class="page-link">3</a></li>
-          <li class="page-item"><a class="page-link">4</a></li>
-          <li class="page-item"><a class="page-link">5</a></li>
 
           <li v-if="pagePosts !== lastPagePosts" class="page-item">
             <a class="page-link" @click="getAllPostsFromApi(pagePosts + 1)"
