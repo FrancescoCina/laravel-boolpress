@@ -2006,6 +2006,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2018,19 +2035,22 @@ __webpack_require__.r(__webpack_exports__);
       baseUri: "http://127.0.0.1:8000",
       posts: [],
       pagePosts: 1,
-      lastPagePosts: ""
+      lastPagePosts: "",
+      isLoading: false
     };
   },
   methods: {
     getAllPostsFromApi: function getAllPostsFromApi(page) {
       var _this = this;
 
+      this.isLoading = true;
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("".concat(this.baseUri, "/api/posts?page=").concat(page)).then(function (res) {
         //   const { data, current_page, last_page } = res.data.posts;
         _this.posts = res.data.posts.data;
         _this.pagePosts = res.data.posts.current_page;
         _this.lastPagePosts = res.data.posts.last_page;
         console.log(_this.posts);
+        _this.isLoading = false;
       });
     }
   },
@@ -6495,7 +6515,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".page-item .page-link[data-v-9ab6dc08] {\n  cursor: pointer;\n}", ""]);
+exports.push([module.i, ".page-item .page-link[data-v-9ab6dc08] {\n  cursor: pointer;\n}\n.loader[data-v-9ab6dc08] {\n  background-color: rgba(0, 0, 0, 0.4);\n  position: fixed;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n}\n.loader .spinner-border[data-v-9ab6dc08] {\n  width: 250px;\n  height: 250px;\n}", ""]);
 
 // exports
 
@@ -38416,6 +38436,17 @@ var render = function() {
     "section",
     { staticClass: "my-5" },
     [
+      _vm.isLoading
+        ? _c(
+            "div",
+            {
+              staticClass:
+                "loader d-flex justify-content-center align-items-center"
+            },
+            [_vm._m(0)]
+          )
+        : _vm._e(),
+      _vm._v(" "),
       _c("h2", [_vm._v("La lista dei posts")]),
       _vm._v(" "),
       _vm._l(_vm.posts, function(post) {
@@ -38446,20 +38477,28 @@ var render = function() {
               ]),
               _vm._v(" "),
               _vm._l(5, function(i) {
-                return _c("li", { key: i, staticClass: "page-item" }, [
-                  _c(
-                    "a",
-                    {
-                      staticClass: "page-link",
-                      on: {
-                        click: function($event) {
-                          _vm.getAllPostsFromApi((_vm.pagePosts = i))
+                return _c(
+                  "li",
+                  {
+                    key: i,
+                    staticClass: "page-item",
+                    class: _vm.pagePosts === i ? "active" : ""
+                  },
+                  [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "page-link",
+                        on: {
+                          click: function($event) {
+                            _vm.getAllPostsFromApi((_vm.pagePosts = i))
+                          }
                         }
-                      }
-                    },
-                    [_vm._v(_vm._s(i))]
-                  )
-                ])
+                      },
+                      [_vm._v(_vm._s(i))]
+                    )
+                  ]
+                )
               }),
               _vm._v(" "),
               _vm.pagePosts !== _vm.lastPagePosts
@@ -38487,7 +38526,18 @@ var render = function() {
     2
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "spinner-border text-warning", attrs: { role: "status" } },
+      [_c("span", { staticClass: "sr-only" }, [_vm._v("Loading...")])]
+    )
+  }
+]
 render._withStripped = true
 
 
