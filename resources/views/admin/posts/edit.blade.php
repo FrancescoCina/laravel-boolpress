@@ -14,6 +14,7 @@
         </div>
   
         @endif
+
         <form action="{{ route('admin.posts.update', $post->id) }}" method="POST">
             @method('PATCH')
             @csrf
@@ -28,6 +29,16 @@
             <div class="form-group">
                 <label for="image">Immagine</label>
                 <input type="text" class="form-control" id="image" name="image" value="{{ $post->image }}">
+              </div>
+              <div class="form-group">  
+                <label for="category_id">Scegli Categoria</label>
+                <select class="form-control" id="category_id" name="category_id">
+                  <option>Nessuna Categoria</option>
+                  @foreach ($categories as $category)
+                      
+                  <option @if(old('category_id', $post->category_id) == $category->id ) selected @endif value="{{ $category->id }}">{{ $category->name }}</option>
+                  @endforeach
+                </select>
               </div>
 
             <button type="submit" class="btn btn-success">Salva</button>

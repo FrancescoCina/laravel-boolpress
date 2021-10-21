@@ -14,11 +14,11 @@
     </div>
 
     @endif
-
     <table class="table">
         <thead>
             <tr>
                 <th scope="col">Titolo</th>
+                <th scope="col">Categoria</th>
                 <th scope="col">Scritto il: </th>
                 <th scope="col"></th>
             </tr>
@@ -27,6 +27,12 @@
             @forelse ($posts as $post)
             <tr>
                 <td>{{ $post->title }}</td>
+
+                @if(is_numeric($post->category_id))
+                <td><span class="badge px-3 badge-warning">{{ $post->category->name }}</span></td>
+                @else
+                <td><span class="badge px-3 badge-warning"> Nessuna categoria </span></td>
+                @endif
                 <td>{{ $post->getFormattedDate($post->created_at, 'd-m-Y') }}</td>
                 <td colspan="2" class="d-flex">
                     <a href="{{ route('admin.posts.show', $post->id) }}" class="btn btn-primary">Dettagli</a>

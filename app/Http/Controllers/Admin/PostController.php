@@ -50,7 +50,8 @@ class PostController extends Controller
         $request->validate([
             'title' => 'required|string|unique:posts|min:2',
             'content' => 'required|string|min:10',
-            'image' => 'required|string'
+            'image' => 'required|string',
+            'category_id' => 'nullable|exists:categories,id',
         ], [
             'required' => 'Il campo :attribute è obbligatorio',
             'string' => 'Il campo :attribute deve essere una stringa',
@@ -85,7 +86,9 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('admin.posts.edit', compact('post'));
+        $categories = Category::all();
+
+        return view('admin.posts.edit', compact('post', 'categories'));
     }
 
     /**
@@ -103,7 +106,9 @@ class PostController extends Controller
         $request->validate([
             'title' => ['required', 'string', Rule::unique('posts')->ignore($post->id), 'min:2'],
             'content' => 'required|string|min:10',
-            'image' => 'required|string'
+            'image' => 'required|string',
+            'category_id' => 'nullable|exists:categories,id',
+
         ], [
             'required' => 'Il campo :attribute è obbligatorio',
             'string' => 'Il campo :attribute deve essere una stringa',
