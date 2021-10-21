@@ -12,7 +12,7 @@ class Post extends Model
         return Carbon::create($this->$column)->format($format);
     }
 
-    protected $fillable = ['title', 'content', 'image', 'slug'];
+    protected $fillable = ['title', 'content', 'image', 'slug', 'category_id'];
 
     public function category()
     {
