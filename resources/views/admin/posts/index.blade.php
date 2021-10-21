@@ -54,4 +54,25 @@
     </div>
 </div>
 
+<section id="post-by-categories" class="container">
+    <div class="row">
+            @foreach ($categories as $category)
+                <div class="col-4">
+                    <h5 class="my-4">{{ $category->name }}</h5>
+
+
+                      @forelse ($category->posts as $post)
+                           <li><a href="{{ route('admin.posts.show', $post->id) }}">{{ $post->title }}</a></li>
+                           @empty <li>Nessun post associato a questa categoria</li>
+                       @endforelse 
+
+                    
+                </div>
+            @endforeach
+    </div>
+</section>
+
+
+
+
 @endsection
