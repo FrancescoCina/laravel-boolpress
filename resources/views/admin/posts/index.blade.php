@@ -28,9 +28,9 @@
             <tr>
                 <td>{{ $post->title }}</td>
                 <td>{{ $post->getFormattedDate($post->created_at, 'd-m-Y') }}</td>
-                <td colspan="2">
+                <td colspan="2" class="d-flex">
                     <a href="{{ route('admin.posts.show', $post->id) }}" class="btn btn-primary">Dettagli</a>
-                    <a href="{{ route('admin.posts.edit', $post->id) }}" class="btn btn-warning">Modifica</a>
+                    <a href="{{ route('admin.posts.edit', $post->id) }}" class="btn btn-warning mx-2">Modifica</a>
                     <form action="{{ route('admin.posts.destroy', $post->id) }}" method="POST">
                         @csrf
                         @method('DELETE')
