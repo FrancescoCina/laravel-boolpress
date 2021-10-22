@@ -30,9 +30,9 @@
                 <td>{{ $post->title }}</td>
 
                 @if(is_numeric($post->category_id))
-                <td><span class="badge px-3 badge-warning">{{ $post->category->name }}</span></td>
+                <td><span class="badge px-3 badge-{{ $post->category->color }}">{{ $post->category->name }}</span></td>
                 @else
-                <td><span class="badge px-3 badge-warning"> Nessuna categoria </span></td>
+                <td><span class="badge px-3 badge-light"> Nessuna categoria </span></td>
                 @endif
                 <td> @if($post->user) {{ $post->user->name }} @else Sconosciuto @endif </td>
                 <td>{{ $post->getFormattedDate($post->created_at, 'd-m-Y') }}</td>
