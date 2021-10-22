@@ -19,6 +19,7 @@
             <tr>
                 <th scope="col">Titolo</th>
                 <th scope="col">Categoria</th>
+                <th scope="col">Autore</th>
                 <th scope="col">Scritto il: </th>
                 <th scope="col"></th>
             </tr>
@@ -33,6 +34,7 @@
                 @else
                 <td><span class="badge px-3 badge-warning"> Nessuna categoria </span></td>
                 @endif
+                <td> @if($post->user) {{ $post->user->name }} @else Sconosciuto @endif </td>
                 <td>{{ $post->getFormattedDate($post->created_at, 'd-m-Y') }}</td>
                 <td colspan="2" class="d-flex">
                     <a href="{{ route('admin.posts.show', $post->id) }}" class="btn btn-primary">Dettagli</a>

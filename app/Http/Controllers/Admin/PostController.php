@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Category;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Auth;
 
 
 class PostController extends Controller
@@ -44,8 +45,6 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-
-
         // VALIDATION 
 
         $request->validate([
@@ -61,6 +60,7 @@ class PostController extends Controller
         ]);
 
         $data = $request->all();
+        $data['user_id'] = Auth::id();
         $post = new Post();
         $post->slug = Str::slug($data['title'], '-');
         $post->fill($data);
