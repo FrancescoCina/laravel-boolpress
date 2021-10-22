@@ -105,7 +105,7 @@ class PostController extends Controller
         // VALIDATION 
 
         $request->validate([
-            'title' => ['required', 'string', Rule::unique('posts')->ignore($post->id), 'min:2'],
+            'title' => ['required', 'string' | Rule::unique('posts')->ignore($post->id), 'min:2'],
             'content' => 'required|string|min:10',
             'image' => 'required|string',
             'category_id' => 'nullable|exists:categories,id',
