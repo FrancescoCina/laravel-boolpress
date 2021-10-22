@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Post;
 use App\Models\Category;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
@@ -41,10 +40,11 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
 
+        // dd($request);
         $request->validate([
-            'name' => 'required | unique:categories',
-            'color' => 'string | min:2',
+            'name' => 'required|string|unique:categories',
         ]);
+        // dump('sono arrivato qua ');
 
         $data = $request->all();
         $category =  new Category();
@@ -86,8 +86,7 @@ class CategoryController extends Controller
     public function update(Request $request, Category $category)
     {
         $request->validate([
-            'name' => ['required' | Rule::unique('categories')->ignore($category->id)],
-            'color' => 'string | min:2',
+            'name' => ['required', Rule::unique('categories')->ignore($category->id)],
         ]);
 
         $data = $request->all();
