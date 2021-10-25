@@ -38728,7 +38728,7 @@ var render = function() {
     }),
     _vm._v(" "),
     _c("div", { staticClass: "card-body" }, [
-      _c("small", [_vm._v(_vm._s(_vm.post.id))]),
+      _c("small", [_vm._v(_vm._s(_vm.post.user.name))]),
       _vm._v(" "),
       _c("h5", { staticClass: "card-title" }, [_vm._v(_vm._s(_vm.post.title))]),
       _vm._v(" "),
