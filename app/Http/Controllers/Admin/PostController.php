@@ -96,9 +96,11 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
+        $tags = Tag::all();
         $categories = Category::all();
+        $tagIds = $post->tags->pluck('id')->toArray();
 
-        return view('admin.posts.edit', compact('post', 'categories'));
+        return view('admin.posts.edit', compact('post', 'categories', 'tags', 'tagIds'));
     }
 
     /**
@@ -118,6 +120,7 @@ class PostController extends Controller
             'content' => 'required|string|min:10',
             'image' => 'required|string',
             'category_id' => 'nullable|exists:categories,id',
+            'tags' => 'nullable|exists:tags,id',
 
         ], [
             'required' => 'Il campo :attribute è obbligatorio',
@@ -127,6 +130,15 @@ class PostController extends Controller
         ]);
 
         $data = $request->all();
+
+
+
+
+        if (!array_key_exists('tags', $data)) $post->tags()->dettach();
+        else $post->tags()->sync($data['tags']);
+
+
+
         $post->update($data);
 
         return redirect()->route('admin.posts.show', $post);

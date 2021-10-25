@@ -30,6 +30,20 @@
                 <label for="image">Immagine</label>
                 <input type="text" class="form-control" id="image" name="image" value="{{ $post->image }}">
               </div>
+
+
+              <div class="form-check form-check-inline my-3">
+                @foreach ($tags as $tag)
+                    
+                <input class="form-check-input mx-2" type="checkbox" id="tags-{{ $tag->id }}" value="{{ $tag->id }}" name="tags[]" @if(in_array($tag->id, old('tags',$tagIds ?? []))) checked @endif>
+                <label class="form-check-label" for="tags-{{ $tag->id }}">{{ $tag->name }}</label>
+                @endforeach
+              </div>
+
+
+
+
+
               <div class="form-group">  
                 <label for="category_id">Scegli Categoria</label>
                 <select class="form-control" id="category_id" name="category_id">
