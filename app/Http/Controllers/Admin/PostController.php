@@ -112,7 +112,6 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-
         // VALIDATION 
 
         $request->validate([
@@ -152,7 +151,6 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-
         if (count($post->tags)) $post->tags()->dettach();
         $post->delete();
         return redirect()->route('admin.posts.index')->with('alert', "Il post: $post->title è stato cancellato correttamente");

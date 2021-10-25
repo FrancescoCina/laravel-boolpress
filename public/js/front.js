@@ -2030,6 +2030,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "CardPost",
   props: ["post"],
@@ -38727,17 +38729,31 @@ var render = function() {
       attrs: { src: _vm.post.image, alt: _vm.post.title, width: "100" }
     }),
     _vm._v(" "),
-    _c("div", { staticClass: "card-body" }, [
-      _c("small", [_vm._v(_vm._s(_vm.post.user.name))]),
-      _vm._v(" "),
-      _c("h5", { staticClass: "card-title" }, [_vm._v(_vm._s(_vm.post.title))]),
-      _vm._v(" "),
-      _c("h6", [_vm._v(_vm._s(_vm.post.category.name))]),
-      _vm._v(" "),
-      _c("p", { staticClass: "card-text" }, [
-        _vm._v("\n      " + _vm._s(_vm.post.content) + "\n    ")
-      ])
-    ])
+    _c(
+      "div",
+      { staticClass: "card-body" },
+      [
+        _c("small", [_vm._v(_vm._s(_vm.post.user.name))]),
+        _vm._v(" "),
+        _c("h5", { staticClass: "card-title" }, [
+          _vm._v(_vm._s(_vm.post.title))
+        ]),
+        _vm._v(" "),
+        _c("h6", [_vm._v(_vm._s(_vm.post.category.name))]),
+        _vm._v(" "),
+        _c("span", { staticClass: "font-weight-bold" }, [_vm._v("Tags: ")]),
+        _vm._l(_vm.post.tags, function(tag) {
+          return _c("span", { key: tag.id }, [
+            _vm._v(" " + _vm._s(tag.name) + " ")
+          ])
+        }),
+        _vm._v(" "),
+        _c("p", { staticClass: "card-text" }, [
+          _vm._v("\n      " + _vm._s(_vm.post.content) + "\n    ")
+        ])
+      ],
+      2
+    )
   ])
 }
 var staticRenderFns = []
