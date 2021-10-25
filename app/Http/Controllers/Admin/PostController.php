@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Category;
+use App\Models\Tag;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
 
@@ -32,9 +33,10 @@ class PostController extends Controller
      */
     public function create()
     {
+        $tags = Tag::all();
         $categories = Category::all();
 
-        return view('admin.posts.create', compact('categories'));
+        return view('admin.posts.create', compact('categories', 'tags'));
     }
 
     /**
@@ -45,6 +47,7 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+
         // VALIDATION 
 
         $request->validate([
@@ -52,10 +55,12 @@ class PostController extends Controller
             'content' => 'required|string|min:10',
             'image' => 'required|string',
             'category_id' => 'nullable|exists:categories,id',
+            'tags' => 'nullable|exists:tags,id',
+
         ], [
             'required' => 'Il campo :attribute è obbligatorio',
             'string' => 'Il campo :attribute deve essere una stringa',
-            'min' => 'Il minimo dei caratteri deve essere :min',
+            'min' => 'Il minimo di caratteri nel campo :attribute deve essere :min',
             'title.unique' => 'Questo titolo esiste già'
         ]);
 
@@ -65,6 +70,10 @@ class PostController extends Controller
         $post->slug = Str::slug($data['title'], '-');
         $post->fill($data);
         $post->save();
+
+        if (array_key_exists('tags', $data)) $post->tags()->attach($data['tags']);
+
+
         return redirect()->route('admin.posts.show', $post);
     }
 
@@ -113,7 +122,7 @@ class PostController extends Controller
         ], [
             'required' => 'Il campo :attribute è obbligatorio',
             'string' => 'Il campo :attribute deve essere una stringa',
-            'min' => 'Il minimo dei caratteri deve essere :min',
+            'min' => 'Il minimo di caratteri nel campo :attribute deve essere :min',
             'title.unique' => 'Questo titolo esiste già'
         ]);
 

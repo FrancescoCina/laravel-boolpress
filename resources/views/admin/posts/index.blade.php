@@ -19,6 +19,7 @@
             <tr>
                 <th scope="col">Titolo</th>
                 <th scope="col">Categoria</th>
+                <th scope="col">Tags</th>
                 <th scope="col">Autore</th>
                 <th scope="col">Scritto il: </th>
                 <th scope="col"></th>
@@ -34,6 +35,13 @@
                 @else
                 <td><span class="badge px-3 badge-light"> Nessuna categoria </span></td>
                 @endif
+                <td>
+                    @forelse ($post->tags as $tag)
+                    <span class="badge px-3 badge-pill" style="background-color: {{ $tag->color }}"> {{ $tag->name }} </span>
+                    @empty
+                        <span>Nessuno</span>
+                    @endforelse
+                </td>
                 <td> @if($post->user) {{ $post->user->name }} @else Sconosciuto @endif </td>
                 <td>{{ $post->getFormattedDate($post->created_at, 'd-m-Y') }}</td>
                 <td colspan="2" class="d-flex">
