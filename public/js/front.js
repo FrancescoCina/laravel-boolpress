@@ -2029,9 +2029,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "CardPost",
-  props: ["post"]
+  props: ["post"],
+  data: function data() {
+    return {};
+  },
+  methods: {},
+  created: function created() {}
 });
 
 /***/ }),
@@ -2123,7 +2129,6 @@ __webpack_require__.r(__webpack_exports__);
         _this.posts = res.data.posts.data;
         _this.pagePosts = res.data.posts.current_page;
         _this.lastPagePosts = res.data.posts.last_page;
-        console.log(_this.posts);
         _this.isLoading = false;
       });
     },
@@ -38726,6 +38731,8 @@ var render = function() {
       _c("small", [_vm._v(_vm._s(_vm.post.id))]),
       _vm._v(" "),
       _c("h5", { staticClass: "card-title" }, [_vm._v(_vm._s(_vm.post.title))]),
+      _vm._v(" "),
+      _c("h6", [_vm._v(_vm._s(_vm.post.category.name))]),
       _vm._v(" "),
       _c("p", { staticClass: "card-text" }, [
         _vm._v("\n      " + _vm._s(_vm.post.content) + "\n    ")

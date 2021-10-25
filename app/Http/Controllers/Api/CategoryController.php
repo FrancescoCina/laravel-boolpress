@@ -2,22 +2,21 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Models\Post;
+use App\Models\Category;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class PostController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        $order = $request->query('order') ?? 'desc';
-        $posts = Post::with('category')->orderBy('id', $order)->paginate(10);
-        return response()->json(compact('posts'));
+        $categories = Category::all();
+        return response()->json(compact('categories'));
     }
 
     /**
@@ -37,9 +36,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post)
+    public function show($id)
     {
-        return response()->json(compact('post'));
+        //
     }
 
     /**

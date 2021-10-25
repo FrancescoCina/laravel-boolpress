@@ -75,7 +75,6 @@ export default {
           this.posts = res.data.posts.data;
           this.pagePosts = res.data.posts.current_page;
           this.lastPagePosts = res.data.posts.last_page;
-          console.log(this.posts);
           this.isLoading = false;
         });
     },
