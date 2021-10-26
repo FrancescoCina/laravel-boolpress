@@ -153,6 +153,6 @@ class PostController extends Controller
     {
         if (count($post->tags)) $post->tags()->dettach();
         $post->delete();
-        return redirect()->route('admin.posts.index')->with('alert', "Il post: $post->title è stato cancellato correttamente");
+        return redirect()->route('admin.posts.index')->with('alert-type', 'success')->with('alert-message', "Il post: $post->title è stato cancellato correttamente");
     }
 }

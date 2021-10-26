@@ -7,12 +7,10 @@
         <a href="{{ route('admin.posts.create') }}" class="btn btn-success">Crea un nuovo post</a>
     </div>
 
-    @if(session('alert'))
-
-    <div class="alert alert-success">
-        {{ session('alert') }}
-    </div>
-
+    @if(session('alert-message'))
+    <ul class="alert alert-{{ session('alert-type') }}">
+      <li>{{ session('alert-message') }}</li>
+    </ul>
     @endif
     <table class="table">
         <thead>

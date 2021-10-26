@@ -4,6 +4,7 @@ use Illuminate\Database\Seeder;
 use App\Models\Role;
 use Faker\Generator as Faker;
 
+
 class RolesTableSeeder extends Seeder
 {
     /**
@@ -13,7 +14,7 @@ class RolesTableSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        $roles_names = ['Admin', 'Editor', 'Reviewer', 'Guest'];
+        $roles_names = ['admin', 'editor', 'reviewer', 'guest'];
 
         foreach ($roles_names as $name) {
             $new_role = new Role();

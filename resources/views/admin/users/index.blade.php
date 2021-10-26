@@ -6,18 +6,7 @@
         <h1>Utenti</h1>
     </div>
 
-    @if(session('alert'))
-
-    <div class="alert alert-success">
-        {{ session('alert') }}
-    </div>
-
-    @endif
-
-
-
-
-    @if(session('alert-message'))
+       @if(session('alert-message'))
     <ul class="alert alert-{{ session('alert-type') }}">
       <li>{{ session('alert-message') }}</li>
     </ul>

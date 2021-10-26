@@ -7,6 +7,13 @@
             <a href="{{ route('admin.categories.create') }}" class="btn btn-success">Crea nuova categoria</a>
         </div>
 
+        @if(session('alert-message'))
+        <ul class="alert alert-{{ session('alert-type') }}">
+          <li>{{ session('alert-message') }}</li>
+        </ul>
+        @endif
+
+
         <table class="table">
             <thead>
                 <tr>
