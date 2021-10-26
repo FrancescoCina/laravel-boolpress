@@ -14,6 +14,14 @@
 
     @endif
 
+
+
+
+    @if(session('alert-message'))
+    <ul class="alert alert-{{ session('alert-type') }}">
+      <li>{{ session('alert-message') }}</li>
+    </ul>
+    @endif
     
     <table class="table">
         <thead>
