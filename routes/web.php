@@ -23,6 +23,10 @@ Auth::routes();
 
 Route::middleware('auth')->name('admin.')->prefix('admin')->namespace('Admin')->group(function () {
     Route::get('/', 'HomeController@index')->name('home');
+    Route::get('/contacts', 'MailController@index')->name('contacts.index');
+    Route::get('/contacts/create', 'MailController@create')->name('contacts.create');
+    Route::post('/contacts', 'MailController@store')->name('contacts.store');
+    Route::get('/contacts/tks', 'MailController@thank')->name('contacts.thanks');
     Route::get('/users', 'UserController@index')->name('users.index');
     Route::get('/users/{user}/edit', 'UserController@edit')->name('users.edit');
     Route::patch('/users/{user}', 'UserController@update')->name('users.update');
